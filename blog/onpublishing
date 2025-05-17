@@ -13,14 +13,8 @@
     <div id="nav-placeholder" style="margin-bottom: 10px;"></div> 
     
 <div class="container">
-    <table style="width: 100%; table-layout: fixed; color:black;">
-        <tr>
-            <td style="vertical-align: top; width: 60%;">
                 <p>big brain testing<br>
                  testing testing.</p>
-            </td>
-        </tr>
-    </table>
 </div>
     <footer>
     <a href="https://twitter.com/jyotsna_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo"></a>
