@@ -13,8 +13,14 @@
     <div id="nav-placeholder" style="margin-bottom: 10px;"></div> 
     
 <div class="container">
-                <p>big brain testing<br>
-                 testing testing.</p>
+    <table style="width: 100%; table-layout: fixed; color:black;">
+        <tr>
+            <td style="vertical-align: top; width: 60%;">
+                <p>My current research interests are broadly around digital identity systems,<br>
+                 internet governance, platform economy, and open-source software.</p>
+            </td>
+        </tr>
+    </table>
 </div>
     <footer>
     <a href="https://twitter.com/jyotsna_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo"></a>
@@ -27,3 +33,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
