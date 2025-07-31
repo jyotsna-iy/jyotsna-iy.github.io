@@ -1,166 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jyo</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jyo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .bookshelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .book {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-size: 0.85em;
+    }
+
+    .book img {
+      width: 100px;
+      height: auto;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      transition: transform 0.2s;
+    }
+
+    .book img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-     <header aria-label="Jyotsna Iyer">
-     </header>
-    
-    <div class="menu-button" onclick="toggleMenu()" style="margin-bottom: 10px;">☰</div>
-    <div id="nav-placeholder" style="margin-bottom: 10px;"></div> 
-    
-    <div class="container" style="margin-top: 0; padding-top: 0;">
-        <div class="content" style="text-align: left; margin-top: 0; padding-top: 0;">
-            <section>
-                <p style="margin-top: 0;"><b>A TBR (To be Read) Masterlist</b><br><br>
-                    Meet the Savarnas by Ravikant Kisana<br><br>
-                    Make Me a Man by Sikata Bannerjee<br><br>
-                    Another India by Pratinav Anil<br><br>
-                    A Philosophy of Shame by Fredric Gros<br><br>
-                    Flatline Constructs by Mark Fisher<br><br>
-                    The Anti Politics Machine by James Ferguson<br><br>
-                    Everything for Everyone: An Oral History of the New York Commune by Eman Abdelhadi, M. E. O'Brien<br><br>
-                    Post-Millennial Indian Speculative Fiction in English: Desi Dystopias and Ideas of Belonging by E. Dawson Varughese<br><br>
-                    The Technology Trap by Carl Benedikt Frey<br><br>
-                    Pious Labour by Amando Lanzillo<br><br>
-                    Absolute Ethical Life by Michel Lazarus<br><br> 
-                    The Bill Gates Problem by Tim Schwab<br><br>
-                    Immediacy, Or, The Style of Too Late Capitalism by Anna Kornbluh<br><br>
-                    Other Networks: A Radical Technology Sourcebook by Lori Emerson<br><br>
-                    Anti-Oedipus: Capitalism and Schizophrenia by Felix Guattari and Gilles Deleuze<br><br>  
-                    Brutal Aesthetics by Hal Foster<br><br>  
-                    Male Fantasies by Klaus Theweleit<br><br>  
-                    Infrastructural Attachment by Emma Park<br><br> 
-                    Finance Aesthetics, Edited by Torsten Adresson<br><br>  
-                    A Little History of Mathematics by Snezana Lawrence<br><br> 
-                    The Great Transformation by Karl Polanyi<br><br> 
-                    The Cultural Legal Studies of Science Fiction, Edited by Alex Green Mitchell Travis and Kieran Tranter<br><br>
-                    Desire and its Discontents by Dipika Jain and Oishik Sarkar<br><br> 
-                    Tata by Mircea Rainu<br><br> 
-                    The Identity Project by Rahul Bhatia<br><br> 
-                    Iconoclast by Anand Teltumbde<br><br> 
-                    The Employees by Olga Ravn<br><br> 
-                    Family Values by Melinda Cooper<br><br> 
-                    The Arts of Logistics by Michel Shane Boyle<br><br> 
-                    Eternal Sovereigns by Gloria Jane Bell<br><br> 
-                    The Vulgarity of Caste by Shailaja Paik<br><br> 
-                    Migrants in the Digital Periphery by Matt Mahmoudi<br><br> 
-                    Reimagining the more than human city (Stories from Singapore) by Jamie Wang<br><br> 
-                    The Making of Modern Finance : Liberal Governance and the Gold Standard by Samuel Knafo<br><br>
-                    The Methodology of Economic Model Building by Lawrence A. Boland<br><br> 
-                    Discourse on Colonialism by Aime Cesaire<br><br>
-                    Comforting Myths: Concerning the Political in Art by Rabih Alameddine<br><br>
-                    Fictions of Financialization: Rethinking Speculation, Exploitation and Twenty-First-Century Capitalism by Nick Bernards<br><br>
-                    Paranoid Finance by Fabian Muniesa<br><br>  
-                    The Innovation Delusion By Lee Vinsel and Andrew L. Russell<br><br>
-                    What Design Can’t Do: Essays on Design and Disillusion by Silvio Lorusso<br><br>  
-                    Speculative communities: Living with uncertainty in a financialized world by Aris Komporozos-Athanasiou<br><br> 
-                    I Accuse This Liberal University of Terror and Violence by Fredy Perlman<br><br> 
-                    The Detroit Printing Co-op: The Politics of the Joy of Printing, by Danielle Aubert<br><br>
-                    Research For People Who Think They Would Rather Create by Dirk Vis<br><br>
-                    Radical Intimacies, Edited by Oliver Vodeb<br><br>
-                    Radical Intimacy by Sophie Rosa<br><br>
-                    Tannishtha Sammanta on Citational Justice [✔] <br><br> 
-                    The Origin of Capitalism by Ellen Meiksins Wood<br><br>
-                    Academic Outsiders by Victoria Dreyes<br><br>
-                    Computer Library/Dream Machines (https://openlibrary.org/works/OL4972656W/Computer_Lib_Dream_Machines?edition=key%3A/books/OL2390405M)<br><br>
-                    The Accumulation of Waste by Ali Kadri<br><br>
-                    The Queer Arab Glossary by Marwan Kaabour<br><br>
-                    Artful Sentences: Syntax as Style by Virginia Tufte<br><br>
-                    The Question Concerning Technology by Heidegger<br><br>
-                    The Technological Society by Jacques Ellul<br><br>
-                    The Human Condition by Hannah Arendt<br><br>
-                    Technics and Civilization by Lewis Mumford<br><br>
-                    Against Technoableism by Ashley Shew<br><br>
-                    How might we learn by Andy Mastuschak<br><br>
-                    Calson Typeface<br><br>
-                    Design of Man-Computer Dialogues by James Martin<br><br>
-                    Foundations of Applied Mathematics by Jeffrey Humphreys (Volume 1 and 2)<br><br>
-                    F*** Nuance by Kieran Healy<br><br>
-                    AI Snake Oil by Arvind Narayanan and Sayash Kapoor<br><br>
-                    A Lovers Discourse by Roland Barthes<br><br>
-                    Training the Archive Edited by: Inke Arns, Eva Birkenstock, Dominik Bönisch, Francis Hunger<br><br>
-                    Mute Compulsion: A Marxist Theory of the Economic Power of Capital by Soren Mau<br><br>
-                    Cybernetics for the 21st Century, Edited by Yuk Hui<br><br>
-                    Blood in the Machine by Brian Merchant<br><br>
-                    Race After Technology by Benjamin Ruha<br><br>
-                    Unmasking AI by Joy Buolamwini<br><br>
-                    Programmed Inequality by Mar Hicks<br><br>
-                    Autonomous Technology by Langdon Winner<br><br>
-                    Ghost Work by Mary Gray and Siddharth Suri<br><br>
-                    The New Experts by Anuradha Sajjanhar<br><br>
-                    The Ordinal Society by Marion Fourcade and Kieran Healy<br><br>
-                    The Utopia of Rules by David Graeber<br><br>
-                    The Mechanic and the Luddite by Jathan Sadowski<br><br>
-                    Eros and Empire by Alexander Stoffel<br><br>
-                    The Anthropology of Digital Practises by John Postill<br><br>
-                    They Flew by Carlos Eire<br><br>
-                    Repression in the Digital Age by Anita R. Gohdes<br><br>
-                    The Videogame Industry Does Not Exist by Brendan Keogh<br><br>
-                    Everything is Predictable: How Bayes' Remarkable Theorem Explains the World by Tom Chivers<br><br>
-                    Science and the Public by Angela Potochnik<br><br>
-                    Neural Networks by Ranjodh Singh Dhaliwal, Théo Lepage-Richer, and Lucy Suchman<br><br>
-                    Rethinking Speculation, exploitation and twenty first century capitalism by Nick Bernards<br><br>
-                    The Soul of a New Machine by Tracy Kidder<br><br>
-                    Tor by Ben Collier<br><br>
-                    The Eye of the Master: A Social History of Artificial Intelligence by Matteo Pasquinelli<br><br>
-                    Sovereign Atonement by Md Azmeary Ferdoush<br><br>
-                    The Softwarization of Cultural Production, Edited by Frederik Lesage and Michael Terren<br><br>
-                    Citation is feminist memory by Sara N. Ahmed<br><br>
-                    Do the Humanities Create Knowledge? by Chris Haufe<br><br>
-                    After the Internet by Tiziana Terranova<br><br>
-                    Server Manifesto by Niklas Maak<br><br>
-                    Data Justice by Lina Dencik, Arne Hintz, Joanna Redden and Emiliano Trere<br><br>
-                    The Blind Spot by Adam Frank, Marcelo Gleiser and Evan Thompson<br><br>
-                    Towards a New International Technological Order by Johan Galtung<br><br>
-                    Discounting the Future: The Ascendancy of a Political Technology by Lilliana Doganova<br><br>
-                    Bureaucratic Archaeology by Ashish Avikunthak<br><br>
-                    The God Market by Meera Nanda<br><br>
-                    Eaten by the Internet, Edited by Corinne Cath<br><br>
-                    Counterrevolution by Melinda Cooper<br><br>
-                    Palo Alto by Malcom Harris<br><br>
-                    Silicon Vallery Imperialism by Erin McElroy<br><br>
-                    Automation by F. Pollock<br><br>
-                    Your Face Belongs to Us by Kashmir Hill<br><br>
-                    Little Book of Deep Learning by Francois Fleuret<br><br>
-                    Caledonian Road by Andrew O Hagan<br><br>
-                    Class Matrix by Varun Chibber<br><br>
-                    Surplus Enjoyment by Slavoj Zizek<br><br>
-                    Art On My Mind by Bell Hooks<br><br>
-                    The Work of Art in the Age of Mechanical Reproduction by Walter Benjamin<br><br>
-                    Cybernetics and the Origin of Information by Raymond Ruyer<br><br>
-                    Ethical Loneliness by Jill Stauffer<br><br>
-                    Social Robots by Paul Sweeney<br><br>
-                    Romantic Science: The Literary Forms of Natural History, Edited by Noah Heringman<br><br>
-                    Pakistan Desires by Osman Kasmani<br><br>
-                    Why Loiter by Shilpa Phadke<br><br>
-                    Yaari Anthology<br><br>
-                    Cybernetics for the 21st Century by Yuk Hui<br><br>
-                    Blood In the Machine by Brian Merchant<br><br>
-                    Bullshit Jobs by David Graeber<br><br>
-                    Roy Bhaskar<br><br>
-                    Clickbait capitalism · Economies of desire in the twenty-first century · Edited by Amin Samman and Earl Gammon.<br><br>
-                    The Black Technical Object by Ramon Amaro<br><br>
-                    Feminist Futures of Work, Edited by Usha Raman, Payal Arora and René König<br><br>
-                    Beyond Measure by James Vincent<br><br>
-                    A Consumer's Republic by Lizabeth Cohen<br><br>
-                </p>
-            </section>
-        </div>
+  <header aria-label="Jyotsna Iyer"></header>
+
+  <div class="menu-button" onclick="toggleMenu()" style="margin-bottom: 10px;">☰</div>
+  <div id="nav-placeholder" style="margin-bottom: 10px;"></div>
+
+  <div class="container" style="margin-top: 0; padding-top: 0;">
+    <div class="content" style="text-align: left; margin-top: 0; padding-top: 0;">
+      <section>
+        <h2>A TBR (To Be Read) Bookshelf</h2>
+        <div class="bookshelf" id="bookshelf"></div>
+        <p style="margin-top: 30px;">
+          <b>Original Text List</b><br><br>
+          Meet the Savarnas by Ravikant Kisana<br><br>
+          Make Me a Man by Sikata Bannerjee<br><br>
+          Another India by Pratinav Anil<br><br>
+          A Philosophy of Shame by Fredric Gros<br><br>
+          Flatline Constructs by Mark Fisher<br><br>
+          The Anti Politics Machine by James Ferguson<br><br>
+          Everything for Everyone: An Oral History of the New York Commune by Eman Abdelhadi, M. E. O'Brien<br><br>
+          Post-Millennial Indian Speculative Fiction in English: Desi Dystopias and Ideas of Belonging by E. Dawson Varughese<br><br>
+          The Technology Trap by Carl Benedikt Frey<br><br>
+          Pious Labour by Amando Lanzillo<br><br>
+          Absolute Ethical Life by Michel Lazarus<br><br>
+          The Bill Gates Problem by Tim Schwab<br><br>
+        </p>
+      </section>
     </div>
-    
-    <footer>
-        <a href="https://twitter.com/jyotsna_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo"></a>
-        <a href="https://www.are.na/jyotsna-_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/arena.png" alt="Arena Logo"></a>
-        <a href="https://www.linkedin.com/in/jyotsna-iy/"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/linkedin.png" alt="LinkedIn Logo"></a>
-        <a href="https://jyotsna-iy.github.io/psa">
-            <div class="psa-image"></div>
-        </a>
-    </footer>
-    <script src="script.js"></script>
+  </div>
+
+  <footer>
+    <a href="https://twitter.com/jyotsna_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo" /></a>
+    <a href="https://www.are.na/jyotsna-_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/arena.png" alt="Arena Logo" /></a>
+    <a href="https://www.linkedin.com/in/jyotsna-iy/"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/linkedin.png" alt="LinkedIn Logo" /></a>
+    <a href="https://jyotsna-iy.github.io/psa"><div class="psa-image"></div></a>
+  </footer>
+
+  <script>
+    const books = [
+      { title: "Meet the Savarnas", author: "Ravikant Kisana" },
+      { title: "Make Me a Man", author: "Sikata Bannerjee" },
+      { title: "Another India", author: "Pratinav Anil" },
+      { title: "A Philosophy of Shame", author: "Fredric Gros" },
+      { title: "Flatline Constructs", author: "Mark Fisher" },
+      { title: "The Anti Politics Machine", author: "James Ferguson" },
+      { title: "Everything for Everyone", author: "Eman Abdelhadi, M. E. O'Brien" },
+      { title: "Post-Millennial Indian Speculative Fiction", author: "E. Dawson Varughese" },
+      { title: "The Technology Trap", author: "Carl Benedikt Frey" },
+      { title: "Pious Labour", author: "Amando Lanzillo" },
+      { title: "Absolute Ethical Life", author: "Michel Lazarus" },
+      { title: "The Bill Gates Problem", author: "Tim Schwab" },
+      { title: "Immediacy, Or, The Style of Too Late Capitalism", author: "Anna Kornbluh" },
+      { title: "Other Networks", author: "Lori Emerson" },
+      { title: "Anti-Oedipus", author: "Felix Guattari and Gilles Deleuze" },
+      { title: "Brutal Aesthetics", author: "Hal Foster" },
+      { title: "Male Fantasies", author: "Klaus Theweleit" },
+      { title: "Infrastructural Attachment", author: "Emma Park" },
+      { title: "A Little History of Mathematics", author: "Snezana Lawrence" },
+      { title: "The Soul of a New Machine", author: "Tracy Kidder" },
+      { title: "Discourse on Colonialism", author: "Aime Cesaire" },
+      { title: "The Human Condition", author: "Hannah Arendt" },
+      { title: "Race After Technology", author: "Ruha Benjamin" },
+      { title: "Bullshit Jobs", author: "David Graeber" },
+      { title: "The Utopia of Rules", author: "David Graeber" }
+    ];
+
+    const shelf = document.getElementById("bookshelf");
+
+    books.forEach(book => {
+      const bookDiv = document.createElement("div");
+      bookDiv.className = "book";
+
+      const img = document.createElement("img");
+      const query = `${book.title} ${book.author}`.replace(/ /g, "+");
+      img.src = `https://covers.openlibrary.org/b/ISBN/${query}-M.jpg?default=false`;
+      img.alt = `Cover of ${book.title}`;
+      img.onerror = () => {
+        img.src = "https://via.placeholder.com/100x150?text=No+Cover";
+      };
+
+      const caption = document.createElement("div");
+      caption.textContent = book.title;
+
+      bookDiv.appendChild(img);
+      bookDiv.appendChild(caption);
+      shelf.appendChild(bookDiv);
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
