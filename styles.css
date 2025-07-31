@@ -20,7 +20,7 @@ body::before {
     position: absolute;
     inset: 0;
     background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/annehighres.jpg');
-    background-size: contain;
+    background-size: auto;
     background-attachment: scroll;
     background-repeat: repeat;
     background-position: center center;
