@@ -1,9 +1,10 @@
 body {
     background-color: #37779b;
     background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/bg.png');
-    background-size: contain;
-    background-attachment: scroll;
-    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
