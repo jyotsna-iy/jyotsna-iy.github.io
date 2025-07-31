@@ -19,10 +19,10 @@ body::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/annehighres.jpg');
+    background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/departmentofprep.jpg');
     background-size: contain;
     background-attachment: scroll;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-position: top left;
     opacity: 0.6;
     z-index: -1;
