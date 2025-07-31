@@ -23,7 +23,7 @@ body::before {
     background-size: contain;
     background-attachment: scroll;
     background-repeat: no-repeat;
-    background-position: top left;
+    background-position: center;
     opacity: 0.6;
     z-index: -1;
 }
