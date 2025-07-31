@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jyo</title>
   <link rel="stylesheet" href="styles.css" />
+
   <style>
-    .bookshelf {
+    .bookshelf-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: 20px;
-      padding: 10px;
+      padding: 20px 0;
     }
 
-    .book {
+    .bookshelf-book {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,7 +22,7 @@
       font-size: 0.85em;
     }
 
-    .book img {
+    .bookshelf-book img {
       width: 100px;
       height: auto;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -30,11 +31,12 @@
       transition: transform 0.2s;
     }
 
-    .book img:hover {
+    .bookshelf-book img:hover {
       transform: scale(1.05);
     }
   </style>
 </head>
+
 <body>
   <header aria-label="Jyotsna Iyer"></header>
 
@@ -45,74 +47,61 @@
     <div class="content" style="text-align: left; margin-top: 0; padding-top: 0;">
       <section>
         <h2>A TBR (To Be Read) Bookshelf</h2>
-        <div class="bookshelf" id="bookshelf"></div>
-        <p style="margin-top: 30px;">
-          <b>Original Text List</b><br><br>
+        <div class="bookshelf-grid" id="bookshelf"></div>
+
+        <p style="margin-top: 40px;"><b>A TBR (To be Read) Masterlist</b><br><br>
+          <!-- Keep your full list here -->
           Meet the Savarnas by Ravikant Kisana<br><br>
           Make Me a Man by Sikata Bannerjee<br><br>
           Another India by Pratinav Anil<br><br>
-          A Philosophy of Shame by Fredric Gros<br><br>
-          Flatline Constructs by Mark Fisher<br><br>
-          The Anti Politics Machine by James Ferguson<br><br>
-          Everything for Everyone: An Oral History of the New York Commune by Eman Abdelhadi, M. E. O'Brien<br><br>
-          Post-Millennial Indian Speculative Fiction in English: Desi Dystopias and Ideas of Belonging by E. Dawson Varughese<br><br>
-          The Technology Trap by Carl Benedikt Frey<br><br>
-          Pious Labour by Amando Lanzillo<br><br>
-          Absolute Ethical Life by Michel Lazarus<br><br>
-          The Bill Gates Problem by Tim Schwab<br><br>
+          A Consumer's Republic by Lizabeth Cohen<br><br>
         </p>
       </section>
     </div>
   </div>
 
   <footer>
-    <a href="https://twitter.com/jyotsna_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo" /></a>
-    <a href="https://www.are.na/jyotsna-_iy"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/arena.png" alt="Arena Logo" /></a>
-    <a href="https://www.linkedin.com/in/jyotsna-iy/"><img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/linkedin.png" alt="LinkedIn Logo" /></a>
-    <a href="https://jyotsna-iy.github.io/psa"><div class="psa-image"></div></a>
+    <a href="https://twitter.com/jyotsna_iy">
+      <img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo" />
+    </a>
+    <a href="https://www.are.na/jyotsna-_iy">
+      <img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/arena.png" alt="Arena Logo" />
+    </a>
+    <a href="https://www.linkedin.com/in/jyotsna-iy/">
+      <img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/linkedin.png" alt="LinkedIn Logo" />
+    </a>
+    <a href="https://jyotsna-iy.github.io/psa">
+      <div class="psa-image"></div>
+    </a>
   </footer>
+
+  <script src="script.js"></script>
 
   <script>
     const books = [
-      { title: "Meet the Savarnas", author: "Ravikant Kisana" },
-      { title: "Make Me a Man", author: "Sikata Bannerjee" },
-      { title: "Another India", author: "Pratinav Anil" },
-      { title: "A Philosophy of Shame", author: "Fredric Gros" },
-      { title: "Flatline Constructs", author: "Mark Fisher" },
-      { title: "The Anti Politics Machine", author: "James Ferguson" },
-      { title: "Everything for Everyone", author: "Eman Abdelhadi, M. E. O'Brien" },
-      { title: "Post-Millennial Indian Speculative Fiction", author: "E. Dawson Varughese" },
-      { title: "The Technology Trap", author: "Carl Benedikt Frey" },
-      { title: "Pious Labour", author: "Amando Lanzillo" },
-      { title: "Absolute Ethical Life", author: "Michel Lazarus" },
-      { title: "The Bill Gates Problem", author: "Tim Schwab" },
-      { title: "Immediacy, Or, The Style of Too Late Capitalism", author: "Anna Kornbluh" },
-      { title: "Other Networks", author: "Lori Emerson" },
-      { title: "Anti-Oedipus", author: "Felix Guattari and Gilles Deleuze" },
-      { title: "Brutal Aesthetics", author: "Hal Foster" },
-      { title: "Male Fantasies", author: "Klaus Theweleit" },
-      { title: "Infrastructural Attachment", author: "Emma Park" },
-      { title: "A Little History of Mathematics", author: "Snezana Lawrence" },
-      { title: "The Soul of a New Machine", author: "Tracy Kidder" },
-      { title: "Discourse on Colonialism", author: "Aime Cesaire" },
-      { title: "The Human Condition", author: "Hannah Arendt" },
-      { title: "Race After Technology", author: "Ruha Benjamin" },
-      { title: "Bullshit Jobs", author: "David Graeber" },
-      { title: "The Utopia of Rules", author: "David Graeber" }
+      { title: "Bullshit Jobs", isbn: "9781501143311" },
+      { title: "The Soul of a New Machine", isbn: "9780316491976" },
+      { title: "The Human Condition", isbn: "9780226586601" },
+      { title: "Discourse on Colonialism", isbn: "9781583670553" },
+      { title: "Anti-Oedipus", isbn: "9780143105824" },
+      { title: "The Utopia of Rules", isbn: "9781612193748" },
+      { title: "Flatline Constructs", isbn: "9780312211253" },
+      { title: "Race After Technology", isbn: "9781509526406" },
+      { title: "The Bill Gates Problem", isbn: "9781668004383" },
+      { title: "The Accumulation of Waste", isbn: "9780863726345" }
     ];
 
     const shelf = document.getElementById("bookshelf");
 
     books.forEach(book => {
       const bookDiv = document.createElement("div");
-      bookDiv.className = "book";
+      bookDiv.className = "bookshelf-book";
 
       const img = document.createElement("img");
-      const query = `${book.title} ${book.author}`.replace(/ /g, "+");
-      img.src = `https://covers.openlibrary.org/b/ISBN/${query}-M.jpg?default=false`;
+      img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg?default=false`;
       img.alt = `Cover of ${book.title}`;
       img.onerror = () => {
-        img.src = "https://via.placeholder.com/100x150?text=No+Cover";
+        img.style.display = "none";
       };
 
       const caption = document.createElement("div");
@@ -123,7 +112,5 @@
       shelf.appendChild(bookDiv);
     });
   </script>
-
-  <script src="script.js"></script>
 </body>
 </html>
