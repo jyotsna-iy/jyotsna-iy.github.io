@@ -1,31 +1,20 @@
 body {
-    position: relative;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    background-color: #37779b;
+    background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/');
+    background-size: contain;
+    background-attachment: scroll;
+    background-position: center center;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
     font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     letter-spacing: 2px;
     text-align: center;
     color: #ffffff;
-    box-sizing: border-box;
-    background-color: #b9d8ea;
-    z-index: 0;
-    overflow: hidden;
-}
-
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/departmentofprep.jpg');
-    background-size: contain;
-    background-attachment: scroll;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.6;
-    z-index: -1;
 }
 
 header {
