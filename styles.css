@@ -1,7 +1,7 @@
 body {
     background-color: #;
     background-image: url('https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/annehighres.jpg');
-    background-size: cover;
+    background-size: contain;
     background-attachment: scroll;
     background-position: center center;
     display: flex;
