@@ -155,7 +155,7 @@ footer img {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    animation: glowPulse 2s infinite ease-in-out;  /* yo yo im testing this */
+    animation: glowPulse 4s infinite ease-in-out;  /* yo yo im testing this */
     filter: drop-shadow(0 0 0px white);  /* yo yo im testing this */
 }
 
@@ -185,7 +185,7 @@ footer img {
     color: #888;
 }
 
-/* Mobile Adjustments */
+/* Mobile*/
 @media screen and (max-width: 768px) {
     body {
         background-size: cover;
