@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jyo – Bookshelf</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jyo's Bookshelf</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <header aria-label="Jyotsna Iyer"></header>
+
+  <div class="menu-button" onclick="toggleMenu()" style="margin-bottom: 10px;">☰</div>
+  <div id="nav-placeholder" style="margin-bottom: 10px;"></div> 
+    
 
   <style>
     .bookshelf-grid {
@@ -197,7 +203,7 @@ const books = [
   { title: "Yaari Anthology", author: "" },
   { title: "Cybernetics for the 21st Century", author: "Yuk Hui" },
   { title: "Blood In the Machine", author: "Brian Merchant" },
-  { title: "Bullshit Jobs", author: "David Graeber" },
+  { title: "Bullshit Jobs", author: "David Graeber", isbn: "9781501143311"},
   { title: "Roy Bhaskar", author: "" },
   { title: "Clickbait capitalism · Economies of desire in the twenty-first century", author: "Edited by Amin Samman and Earl Gammon" },
   { title: "The Black Technical Object", author: "Ramon Amaro" },
