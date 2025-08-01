@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jyo</title>
+  <title>Jyo's Bookshelf</title>
   <link rel="stylesheet" href="styles.css" />
 
   <style>
@@ -13,7 +13,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 20px;
-      padding: 0;
+      padding: 20px;
     }
 
     .bookshelf-book {
@@ -38,42 +38,14 @@
     }
   </style>
 </head>
-
 <body>
-  <header aria-label="Jyotsna Iyer"></header>
 
-  <div class="menu-button" onclick="toggleMenu()" style="margin-bottom: 10px;">☰</div>
-  <div id="nav-placeholder" style="margin-bottom: 10px;"></div>
-
-  <div class="container" style="margin-top: 0; padding-top: 0;">
-    <div class="content" style="text-align: left; margin-top: 0; padding-top: 0;">
-      <section>
-        <h2></h2>
-        <div class="bookshelf-grid" id="bookshelf"></div>
-      </section>
-    </div>
-  </div>
-
-  <footer>
-    <a href="https://twitter.com/jyotsna_iy">
-      <img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/twitter.png" alt="Twitter Logo" />
-    </a>
-    <a href="https://www.are.na/jyotsna-_iy">
-      <img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/arena.png" alt="Arena Logo" />
-    </a>
-    <a href="https://www.linkedin.com/in/jyotsna-iy/">
-      <img src="https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/linkedin.png" alt="LinkedIn Logo" />
-    </a>
-    <a href="https://jyotsna-iy.github.io/psa">
-      <div class="psa-image"></div>
-    </a>
-  </footer>
+  <div class="bookshelf-grid" id="bookshelf"></div>
 
   <script>
     const fallbackImage = "https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/document.png";
-    const shelf = document.getElementById("bookshelf");
 
- const books = [
+const books = [
   { title: "Meet the Savarnas", author: "Ravikant Kisana" },
   { title: "Make Me a Man", author: "Sikata Bannerjee" },
   { title: "Another India", author: "Pratinav Anil" },
@@ -208,50 +180,45 @@
 ];
 
 
+    const shelf = document.getElementById("bookshelf");
+
     async function fetchISBN(title) {
-      const query = encodeURIComponent(title);
-      const url = `https://openlibrary.org/search.json?title=${query}`;
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        const book = data.docs.find(doc => doc.isbn && doc.isbn.length > 0);
-        return book ? book.isbn[0] : null;
-      } catch (error) {
-        console.error(`Failed to fetch ISBN for "${title}"`, error);
-        return null;
-      }
+      const res = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`);
+      const data = await res.json();
+      const book = data.docs.find(doc => doc.isbn && doc.isbn.length > 0);
+      return book ? book.isbn[0] : null;
     }
 
-    async function buildBookshelf() {
-      for (const title of books) {
-        const isbn = await fetchISBN(title);
+    async function createBookCard(title) {
+      const isbn = await fetchISBN(title);
+      const imgSrc = isbn
+        ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+        : fallbackImage;
 
-        const bookDiv = document.createElement("div");
-        bookDiv.className = "bookshelf-book";
+      const bookDiv = document.createElement("div");
+      bookDiv.className = "bookshelf-book";
 
-        const img = document.createElement("img");
-        if (isbn) {
-          img.src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`;
-        } else {
-          img.src = fallbackImage;
-        }
+      const img = document.createElement("img");
+      img.src = imgSrc;
+      img.alt = `Cover of ${title}`;
+      img.onerror = () => {
+        img.src = fallbackImage;
+      };
 
-        img.alt = `Cover of ${title}`;
-        img.onerror = () => {
-          img.src = fallbackImage;
-        };
+      const caption = document.createElement("div");
+      caption.textContent = title;
 
-        const caption = document.createElement("div");
-        caption.textContent = title;
-
-        bookDiv.appendChild(img);
-        bookDiv.appendChild(caption);
-        shelf.appendChild(bookDiv);
-      }
+      bookDiv.appendChild(img);
+      bookDiv.appendChild(caption);
+      shelf.appendChild(bookDiv);
     }
 
-    buildBookshelf();
+    books.forEach(title => {
+      createBookCard(title);
+    });
   </script>
+
 </body>
 </html>
+
 
