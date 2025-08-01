@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jyo – Bookshelf</title>
+  <title>Jyo</title>
   <link rel="stylesheet" href="styles.css" />
 
   <style>
     .bookshelf-grid {
-      display: flex;
-      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 20px;
       padding: 0;
-      justify-content: flex-start;
     }
 
     .bookshelf-book {
@@ -21,7 +22,6 @@
       align-items: center;
       text-align: center;
       font-size: 0.85em;
-      width: 120px;
     }
 
     .bookshelf-book img {
@@ -48,7 +48,7 @@
   <div class="container" style="margin-top: 0; padding-top: 0;">
     <div class="content" style="text-align: left; margin-top: 0; padding-top: 0;">
       <section>
-        <h2>Bookshelf</h2>
+        <h2></h2>
         <div class="bookshelf-grid" id="bookshelf"></div>
       </section>
     </div>
@@ -71,8 +71,9 @@
 
   <script>
     const fallbackImage = "https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/document.png";
+    const shelf = document.getElementById("bookshelf");
 
-const books = [
+ const books = [
   { title: "Meet the Savarnas", author: "Ravikant Kisana" },
   { title: "Make Me a Man", author: "Sikata Bannerjee" },
   { title: "Another India", author: "Pratinav Anil" },
@@ -206,42 +207,42 @@ const books = [
   { title: "A Consumer's Republic", author: "Lizabeth Cohen" }
 ];
 
-    async function fetchISBN(title, author) {
-      const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}`;
+
+    async function fetchISBN(title) {
+      const query = encodeURIComponent(title);
+      const url = `https://openlibrary.org/search.json?title=${query}`;
       try {
         const res = await fetch(url);
         const data = await res.json();
-        const doc = data.docs.find(d => d.isbn && d.isbn.length > 0);
-        return doc ? doc.isbn[0] : null;
-      } catch (err) {
-        console.error(`Error fetching ISBN for "${title}"`, err);
+        const book = data.docs.find(doc => doc.isbn && doc.isbn.length > 0);
+        return book ? book.isbn[0] : null;
+      } catch (error) {
+        console.error(`Failed to fetch ISBN for "${title}"`, error);
         return null;
       }
     }
 
-    async function renderBooks() {
-      const shelf = document.getElementById("bookshelf");
+    async function buildBookshelf() {
+      for (const title of books) {
+        const isbn = await fetchISBN(title);
 
-      for (const book of books) {
         const bookDiv = document.createElement("div");
         bookDiv.className = "bookshelf-book";
 
-        let img = document.createElement("img");
-        const isbn = await fetchISBN(book.title, book.author);
-
+        const img = document.createElement("img");
         if (isbn) {
           img.src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`;
         } else {
           img.src = fallbackImage;
         }
 
-        img.alt = `Cover of ${book.title}`;
+        img.alt = `Cover of ${title}`;
         img.onerror = () => {
           img.src = fallbackImage;
         };
 
         const caption = document.createElement("div");
-        caption.textContent = book.title;
+        caption.textContent = title;
 
         bookDiv.appendChild(img);
         bookDiv.appendChild(caption);
@@ -249,12 +250,8 @@ const books = [
       }
     }
 
-    renderBooks();
-
-    // Optional: Menu toggle placeholder
-    function toggleMenu() {
-      alert("Menu toggled");
-    }
+    buildBookshelf();
   </script>
 </body>
 </html>
+
