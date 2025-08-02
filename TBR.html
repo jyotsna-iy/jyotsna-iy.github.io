@@ -210,15 +210,21 @@
   { title: "A Consumer's Republic", author: "Lizabeth Cohen" }
 ];
 
-    const shelf = document.getElementById("bookshelf");
+const shelf = document.getElementById("bookshelf");
+  const fallbackImage = "https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/document.png";
 
-    async function fetchISBN(book) {
+  async function fetchISBN(book) {
     if (book.isbn) return book.isbn;
 
-    const response = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(book.title)}&author=${encodeURIComponent(book.author)}`);
-    const data = await response.json();
-    const result = data.docs[0];
-    return result?.isbn?.[0] || null;
+    try {
+      const response = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(book.title)}&author=${encodeURIComponent(book.author)}`);
+      const data = await response.json();
+      const result = data.docs[0];
+      return result?.isbn?.[0] || null;
+    } catch (error) {
+      console.error("ISBN fetch failed for:", book.title);
+      return null;
+    }
   }
 
   async function renderBooks() {
@@ -230,13 +236,13 @@
       const img = document.createElement("img");
       if (isbn) {
         img.src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`;
-        img.alt = `Cover of ${book.title}`;
-        img.onerror = () => {
-          img.style.display = "none";
-        };
       } else {
-        img.style.display = "none";
+        img.src = fallbackImage;
       }
+      img.alt = `Cover of ${book.title}`;
+      img.onerror = () => {
+        img.src = fallbackImage;
+      };
 
       const caption = document.createElement("div");
       caption.textContent = book.title;
@@ -250,3 +256,5 @@
   renderBooks();
 </script>
 
+
+    
