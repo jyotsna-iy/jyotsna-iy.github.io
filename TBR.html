@@ -189,74 +189,53 @@ const books = [
   { title: "A Consumer's Republic", author: "Lizabeth Cohen" }
 ];
 
-const fallbackImage = "https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/document.png";
+ const shelf = document.getElementById("bookshelf");
+    const fallbackImage = "https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/document.png";
 
-// Fetch from Open Library first
-async function fetchCoverFromOpenLibrary(book) {
-  try {
-    const response = await fetch(
-      `https://openlibrary.org/search.json?title=${encodeURIComponent(book.title)}&author=${encodeURIComponent(book.author)}`
-    );
-    const data = await response.json();
-    const result = data.docs[0];
-    return result?.cover_i ? `https://covers.openlibrary.org/b/id/${result.cover_i}-M.jpg` : null;
-  } catch (error) {
-    console.error("Open Library fetch failed for:", book.title);
-    return null;
-  }
-}
-
-async function fetchCoverFromInternetArchive(book) {
-  try {
-
-    const response = await fetch(
-      `https://archive.org/advancedsearch.php?q=${encodeURIComponent(book.title)} AND creator:${encodeURIComponent(book.author)}&fl[]=identifier&fl[]=title&rows=1&output=json`
-    );
-    const data = await response.json();
-    if (data.response.docs.length > 0) {
-      const identifier = data.response.docs[0].identifier;
-
-      return `https://archive.org/services/img/${identifier}`;
+    async function fetchCoverID(book) {
+      try {
+        const response = await fetch(
+          `https://openlibrary.org/search.json?title=${encodeURIComponent(book.title)}&author=${encodeURIComponent(book.author)}`
+        );
+        const data = await response.json();
+        const result = data.docs[0];
+        return result?.cover_i || null;
+      } catch (error) {
+        console.error("Cover fetch failed for:", book.title);
+        return null;
+      }
     }
-    return null;
-  } catch (error) {
-    console.error("Internet Archive fetch failed for:", book.title);
-    return null;
-  }
-}
 
-async function fetchCover(book) {
-  let coverUrl = await fetchCoverFromOpenLibrary(book);
-  if (!coverUrl) {
-    coverUrl = await fetchCoverFromInternetArchive(book);
-  }
-  return coverUrl || fallbackImage;
-}
+    async function renderBooks() {
+      for (const book of books) {
+        const coverId = await fetchCoverID(book);
+        const bookDiv = document.createElement("div");
+        bookDiv.className = "bookshelf-book";
 
-async function renderBooks() {
-  for (const book of books) {
-    const coverUrl = await fetchCover(book);
-    const bookDiv = document.createElement("div");
-    bookDiv.className = "bookshelf-book";
+        const img = document.createElement("img");
+        if (coverId) {
+          img.src = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+        } else {
+          img.src = fallbackImage;
+        }
+        img.alt = `Cover of ${book.title}`;
+        img.onerror = () => {
+          img.src = fallbackImage;
+        };
 
-    const img = document.createElement("img");
-    img.src = coverUrl;
-    img.alt = `Cover of ${book.title || "Unknown Title"}`;
-    img.onerror = () => {
-      img.src = fallbackImage;
-    };
-    img.loading = "lazy";
+        const caption = document.createElement("div");
+        caption.textContent = book.title;
 
-    const caption = document.createElement("div");
-    caption.innerHTML = `<strong>${book.title || "Untitled"}</strong><br><em>${book.author}</em>`;
+        bookDiv.appendChild(img);
+        bookDiv.appendChild(caption);
+        shelf.appendChild(bookDiv);
+      }
+    }
 
-    bookDiv.appendChild(img);
-    bookDiv.appendChild(caption);
-    shelf.appendChild(bookDiv);
-  }
-}
-
-renderBooks();
+    renderBooks();
+  </script>
+</body>
+</html>
 
 
 
