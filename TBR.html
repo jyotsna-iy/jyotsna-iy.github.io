@@ -8,8 +8,8 @@
 
   <style>
     .bookshelf-grid {
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 1000px; 
+      margin: 0 auto; 
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 20px;
@@ -50,6 +50,10 @@
       <section>
         <h2></h2>
         <div class="bookshelf-grid" id="bookshelf"></div>
+
+        <p style="margin-top: 40px;"><b></b><br><br>
+  
+        </p>
       </section>
     </div>
   </div>
@@ -68,6 +72,8 @@
       <div class="psa-image"></div>
     </a>
   </footer>
+
+  <script src="script.js"></script>
 
   <script>
  const books = [
@@ -159,7 +165,7 @@
   { title: "Science and the Public", author: "Angela Potochnik" },
   { title: "Neural Networks", author: "Ranjodh Singh Dhaliwal, Théo Lepage-Richer, and Lucy Suchman" },
   { title: "Rethinking Speculation, exploitation and twenty first century capitalism", author: "Nick Bernards" },
-  { title: "The Soul of a New Machine", author: "Tracy Kidder" },
+  { title: "The Soul of a New Machine", author: "Tracy Kidder",  isbn: "9780316491976" },
   { title: "Tor", author: "Ben Collier" },
   { title: "The Eye of the Master: A Social History of Artificial Intelligence", author: "Matteo Pasquinelli" },
   { title: "Sovereign Atonement", author: "Md Azmeary Ferdoush" },
@@ -195,25 +201,14 @@
   { title: "Yaari Anthology", author: "" },
   { title: "Cybernetics for the 21st Century", author: "Yuk Hui" },
   { title: "Blood In the Machine", author: "Brian Merchant" },
-  { title: "Bullshit Jobs", author: "David Graeber" },
-  { title: "Roy Bhaskar", author: "" },
+  { title: "Bullshit Jobs", author: "David Graeber",  isbn: "9781501143311" },
+  { title: "", author: "Roy Bhaskar" },
   { title: "Clickbait capitalism · Economies of desire in the twenty-first century", author: "Edited by Amin Samman and Earl Gammon" },
   { title: "The Black Technical Object", author: "Ramon Amaro" },
   { title: "Feminist Futures of Work", author: "Edited by Usha Raman, Payal Arora and René König" },
   { title: "Beyond Measure", author: "James Vincent" },
   { title: "A Consumer's Republic", author: "Lizabeth Cohen" }
 ];
-
-    fetch('/nav.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('nav-placeholder').innerHTML = html;
-      });
-
-    const books = [
-      // Leave this empty or fill with:
-      // { title: "Book Title", isbn: "1234567890123" },
-    ];
 
     const shelf = document.getElementById("bookshelf");
 
@@ -222,10 +217,10 @@
       bookDiv.className = "bookshelf-book";
 
       const img = document.createElement("img");
-      img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
+      img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg?default=false`;
       img.alt = `Cover of ${book.title}`;
       img.onerror = () => {
-        img.src = "https://raw.githubusercontent.com/jyotsna-iy/jyotsna-iy.github.io/main/document.png";
+        img.style.display = "none";
       };
 
       const caption = document.createElement("div");
@@ -235,13 +230,9 @@
       bookDiv.appendChild(caption);
       shelf.appendChild(bookDiv);
     });
-
-    function toggleMenu() {
-
-      alert("Menu toggle clicked (you can replace this)");
-    }
   </script>
 </body>
-</html>
+  
+
 
 
